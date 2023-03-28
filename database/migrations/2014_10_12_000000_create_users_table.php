@@ -17,6 +17,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('role');
+            $table->integer('gaji_total');
+            $table->integer('jumlah_lembur');
+            $table->integer('sisa_cuti');
             $table->rememberToken();
             $table->timestamps();
         });
