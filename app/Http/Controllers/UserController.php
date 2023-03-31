@@ -35,7 +35,12 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('karyawan.form_add_account', [
+            'title' => 'Tambah Karyawan',
+            'method' => 'POST',
+            'action' => 'karyawan'
+        ]);
+
     }
 
     /**
@@ -43,7 +48,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $karyawan = new Users;
+        $karyawan->name = $request->name;
+        $karyawan->email = $request->email;
+        $pass_crypt = bcrypt($request->password);
+        $karyawan->password = $pass_crypt;
+        $karyawan->save();
+        return redirect('/karyawan')->with('msg', 'Tambah akun berhasil');
+
     }
 
     /**
@@ -73,8 +85,9 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(Request $request)
     {
-        //
+        $id = $request->id;
+        Users::where('id', $id)->delete();
     }
 }

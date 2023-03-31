@@ -10,7 +10,7 @@
                 <p>
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
 
-                    <a href="" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                    <a href="/karyawan/create" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
                 </p>
             </div>
             <div class="box-body">
@@ -40,8 +40,7 @@
                                 <td>
                                     <div style="width:60px">
                                         <a href="" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
-
-                                        <button href="" class="btn btn-danger btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
+                                        <button href="/karyawan" class="btn btn-danger btn-xs btn-hapus" id="delete" onclick=><i class="fa fa-trash-o"></i></button>
                                     </div>
                                 </td>
                             </tr>

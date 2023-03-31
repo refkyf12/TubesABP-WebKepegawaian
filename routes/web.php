@@ -26,4 +26,6 @@ Route::post('/auth', 'App\Http\Controllers\UserController@authenticate');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/karyawan', 'App\Http\Controllers\UserController@index');
+    Route::resource('karyawan', UserController::class);
+
 });
