@@ -39,7 +39,7 @@
                                 <td>{{ $dt->sisa_cuti }}</td>
                                 <td>
                                     <div style="width:60px">
-                                        <a href="" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
+                                        <a href="/karyawan/{{$dt->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
                                         <button href="/karyawan" class="btn btn-danger btn-xs btn-hapus" id="delete" onclick=><i class="fa fa-trash-o"></i></button>
                                     </div>
                                 </td>

@@ -27,5 +27,6 @@ Route::post('/auth', 'App\Http\Controllers\UserController@authenticate');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/karyawan', 'App\Http\Controllers\UserController@index');
     Route::resource('karyawan', UserController::class);
-
+    Route::get('/karyawan/{id}', [UserController::class], 'show')->name('show');
+    Route::post('/update/{id}', 'App\Http\Controllers\UserController@update');
 });
