@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,10 @@ Route::post('/auth', 'App\Http\Controllers\UserController@authenticate');
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/karyawan', 'App\Http\Controllers\UserController@index');
     Route::resource('karyawan', UserController::class);
+    Route::delete('/delete/{id}','App\Http\Controllers\UserController@delete');
+});
 
+Route::get('/keluar',function(){
+    Auth::logout();
+    return redirect('/login');
 });

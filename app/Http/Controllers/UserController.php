@@ -85,9 +85,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(Request $request)
+    public function delete($id)
     {
-        $id = $request->id;
-        Users::where('id', $id)->delete();
+        $data = Users::find($id);
+        $data ->delete();
+        return redirect('/karyawan')->with('msg', 'Data Berhasil di Hapus');
     }
 }
