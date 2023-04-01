@@ -63,7 +63,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = Users::find($id);
+        return view('karyawan.form_edit_account', compact('data'));
     }
 
     /**
@@ -79,7 +80,9 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Users::find($id);
+        $data->update($request->all());
+        return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
 
     /**

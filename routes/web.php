@@ -29,6 +29,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/karyawan', 'App\Http\Controllers\UserController@index');
     Route::resource('karyawan', UserController::class);
     Route::delete('/delete/{id}','App\Http\Controllers\UserController@delete');
+    Route::get('/karyawan/{id}', [UserController::class], 'show')->name('show');
+    Route::post('/update/{id}', 'App\Http\Controllers\UserController@update');
 });
 
 Route::get('/keluar',function(){

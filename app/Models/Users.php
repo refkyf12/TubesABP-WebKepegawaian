@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Users extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'email', 'password'];
     
     public function cuti(){
         return $this->hasMany(Cuti::class);
