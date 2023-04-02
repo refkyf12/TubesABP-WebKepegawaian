@@ -9,8 +9,9 @@
             <div class="box-header">
                 <p>
                     <button class="btn btn-sm btn-flat btn-warning btn-refresh"><i class="fa fa-refresh"></i> Refresh</button>
-
+                    @if(\Auth::user()->role == 1)
                     <a href="/karyawan/create" class="btn btn-sm btn-flat btn-primary"><i class="fa fa-plus"></i> Tambah Data</a>
+                    @endif
                 </p>
             </div>
             <div class="box-body">
