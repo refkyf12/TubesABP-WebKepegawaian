@@ -24,20 +24,42 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Gaji Total</th>
-                                <th>Jumlah Lembur</th>
-                                <th>Sisa Cuti</th>
+                                <th>Lembur</th>
+                                <th>Cuti</th>
+                                <th>Nama Departement</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($data as $e=>$dt)
-                            <tr>
+                            @foreach($data as $e=>$dt){
+                                <tr>
                                 <td>{{ $e+1 }}</td>
                                 <td>{{ $dt->name }}</td>
                                 <td>{{ $dt->email }}</td>
                                 <td>{{ $dt->gaji_total }}</td>
-                                <td>{{ $dt->jumlah_lembur }}</td>
-                                <td>{{ $dt->sisa_cuti }}</td>
+                                <td>
+                                    <ul>
+                                        @foreach ($dt->lembur as $a)
+                                        <li> Lama Lembur : {{ $a->lama_lembur }}</li>
+                                        Tanggal Lembur : {{ $a->tanggal_lembur }}
+                                        @endforeach
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        @foreach ($dt->cuti as $c)
+                                        <li> Lama Cuti : {{ $c->lama_cuti }}</li>
+                                        Tanggal Cuti : {{ $c->tanggal_cuti }}
+                                @endforeach
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        @foreach ($dt->departement as $d)
+                                        <li>{{ $d->nama_department }}</li>
+                                        @endforeach
+                                    </ul>
+                                </td>
                                 <td>
                                     <div style="width:60px">
                                         <a href="/karyawan/{{$dt->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>

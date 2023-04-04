@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $karyawan = Users::all();
+        $karyawan = Users::with('lembur', 'cuti', 'departement')->get();
         return view('karyawan.index', ['data' => $karyawan]);
     }
 
@@ -51,7 +52,7 @@ class UserController extends Controller
         $karyawan = new Users;
         $karyawan->name = $request->name;
         $karyawan->email = $request->email;
-        $pass_crypt = bcrypt($request->password);
+        $pass_crypt = Hash::make($request->password);
         $karyawan->password = $pass_crypt;
         $karyawan->save();
         return redirect('/karyawan')->with('msg', 'Tambah akun berhasil');
@@ -72,7 +73,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dt = User::find($id);
+    	$title = "Edit Karyawan $dt->name";
+
+    	return view('karyawan.edit',compact('dt'));
     }
 
     /**
@@ -81,7 +85,16 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $data = Users::find($id);
-        $data->update($request->all());
+        $this->validate($request,[
+    		'email'=>'required',
+    		'name'=>'required'
+    	]);
+
+    	$data['email'] = $request->email;
+        $data['name'] = $request->name;
+        $hashedPassword = Auth::user()->getAuthPassword();
+        $data['password'] = $hashedPassword;
+    	User::where('id',$id)->update($data);
         return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
 
