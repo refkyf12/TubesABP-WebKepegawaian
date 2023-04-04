@@ -87,7 +87,6 @@ class UserController extends Controller
     {
         
         $data = Users::find($id);
-        $id = optional(Auth::user())->id;
         if ($request->password != ""){
             $data->name = $request->name;
             $data->email = $request->email;
@@ -97,6 +96,7 @@ class UserController extends Controller
             $data->update();
             return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
         } else {
+            $id = optional(Auth::user())->id;
             return Redirect::back()->withErrors(['msg' => 'Password harus diisi']);
         }
     }
