@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\Users;
 
 class UserController extends Controller
@@ -80,9 +81,20 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        
         $data = Users::find($id);
-        $data->update($request->all());
-        return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
+        $id = optional(Auth::user())->id;
+        if ($request->password != ""){
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $pass_crypt = bcrypt($request->password);
+            $data->password = $pass_crypt;
+            $data->role = $request->role;
+            $data->update();
+            return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
+        } else {
+            return Redirect::back()->withErrors(['msg' => 'Password harus diisi']);
+        }
     }
 
     /**

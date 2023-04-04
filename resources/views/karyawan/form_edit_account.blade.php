@@ -45,8 +45,22 @@
                             type="password"
                             name="password"
                             class="form-control"
-                            value="{{ $data->password}}"
+                            value=""
                         />
+                    </div>
+                    @if($errors->any())
+                    <b style="color:red" >{{$errors->first()}}</b>
+                    @endif
+                    <br>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <br>
+                        <select required name="role">
+                        <option value="">--pilih--</option>
+                        <option value="{{ isset($data)?$data->role:'1' }}">Admin</option>
+                        <option value="{{ isset($data)?$data->role:'2' }}">HRD</option>
+                        <option value="{{ isset($data)?$data->role:'3' }}">Karyawan</option>
+                        </select>
                     </div>
                     <div style="text-align: center">
                         <button class="btn btn-success">Simpan</button>
