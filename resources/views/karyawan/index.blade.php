@@ -22,14 +22,19 @@
                                 <th>No</th>
                                 <th>Name</th>
                                 <th>Email</th>
+<<<<<<< Updated upstream
                                 <th>Gaji Total</th>
                                 <th>Jumlah Lembur</th>
                                 <th>Sisa Cuti</th>
+=======
+                                <th>Role</th>
+>>>>>>> Stashed changes
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($data as $e=>$dt)
+<<<<<<< Updated upstream
                             <tr>
                                 <td>{{ $e+1 }}</td>
                                 <td>{{ $dt->name }}</td>
@@ -37,6 +42,13 @@
                                 <td>{{ $dt->gaji_total }}</td>
                                 <td>{{ $dt->jumlah_lembur }}</td>
                                 <td>{{ $dt->sisa_cuti }}</td>
+=======
+                                <tr>
+                                <td>{{ $e+1 }}</td>
+                                <td>{{ $dt->name }}</td>
+                                <td>{{ $dt->email }}</td>
+                                <td>{{ $dt->role }}</td>
+>>>>>>> Stashed changes
                                 <td>
                                     <div style="width:60px">
                                         <a href="/karyawan/{{$dt->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
