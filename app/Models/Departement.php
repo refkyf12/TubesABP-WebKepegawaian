@@ -11,6 +11,6 @@ class Departement extends Model
     protected $table = 'departement';
     
     public function user(){
-        return $this->hasMany(Users::class);
+        return $this->belongsTo(Users::class);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Users;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,7 +28,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $karyawan = Users::all();
+        $karyawan = Users::with('lembur', 'cuti', 'departement')->get();
         return view('karyawan.index', ['data' => $karyawan]);
     }
 
@@ -52,7 +53,7 @@ class UserController extends Controller
         $karyawan = new Users;
         $karyawan->name = $request->name;
         $karyawan->email = $request->email;
-        $pass_crypt = bcrypt($request->password);
+        $pass_crypt = Hash::make($request->password);
         $karyawan->password = $pass_crypt;
         $karyawan->save();
         return redirect('/karyawan')->with('msg', 'Tambah akun berhasil');
@@ -73,7 +74,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dt = Users::find($id);
+    	$title = "Edit Karyawan $dt->name";
+
+    	return view('karyawan.edit',compact('dt'));
     }
 
     /**

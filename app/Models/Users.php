@@ -20,6 +20,6 @@ class Users extends Model
     }
 
     public function departement(){
-        return $this->belongsTo(Departement::class);
+        return $this->hasMany(Departement::class);
     }
 }

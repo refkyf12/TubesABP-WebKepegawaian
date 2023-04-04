@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('password');
             $table->integer('role');
             $table->integer('gaji_total');
-            $table->integer('jumlah_lembur');
-            $table->integer('sisa_cuti');
             $table->rememberToken();
             $table->timestamps();
         });
