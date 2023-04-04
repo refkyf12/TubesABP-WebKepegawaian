@@ -53,6 +53,7 @@ class UserController extends Controller
         $karyawan->email = $request->email;
         $pass_crypt = bcrypt($request->password);
         $karyawan->password = $pass_crypt;
+        $karyawan->role = $request->role;
         $karyawan->save();
         return redirect('/karyawan')->with('msg', 'Tambah akun berhasil');
 
