@@ -48,15 +48,6 @@
                             value="{{ isset($data)?$data->password:'' }}"
                         />
                     </div>
-
-                    <div class="form-group">
-                        <label>Role</label>
-                        <select required name="role">
-                        <option value="{{ isset($data)?$data->role:'1' }}">Admin</option>
-                        <option value="{{ isset($data)?$data->role:'2' }}">HRD</option>
-                        <option value="{{ isset($data)?$data->role:'3' }}">Karyawan</option>
-                        </select>
-                    </div>
                     <br>
                     <div class="form-group">
                         <label>Role</label>
