@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Lembur;
+use App\Models\Cuti;
 
 class UserController extends Controller
 {
@@ -68,6 +70,15 @@ class UserController extends Controller
         return view('karyawan.form_edit_account', compact('data'));
     }
 
+    public function show_karyawan(string $id)
+    {
+        $data = Users::find($id);
+        $lembur = Lembur::find($id);
+        $cuti = Cuti::find($id);
+        // $data = Users::with('lembur', 'cuti', 'departement')->get();
+        return view('karyawan.form_edit_account_karyawan', compact('data', 'lembur', 'cuti'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -98,6 +109,27 @@ class UserController extends Controller
         return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
 
+    public function update_hrd(Request $request, string $id)
+    {
+        $data = Users::find($id);
+        $lembur = Lembur::find($id);
+        $cuti = Cuti::find($id);
+        $this->validate($request,[
+    		'email'=>'required',
+    		'name'=>'required'
+    	]);
+
+        $data['name'] = $request->name;
+        $data['gaji_total'] = $request->gaji_total;
+        $lembur['lama_lembur'] = $request->lama_lembur;
+        $cuti['lama_cuti'] = $request->lama_cuti;
+        $lembur['tanggal_lembur'] = $request->tanggal_lembur;
+        $cuti['tanggal_cuti'] = $request->tanggal_cuti;
+    	User::where('id',$id)->update_hrd($data);
+        lembur::where('id',$id)->update_hrd($lembur);
+        cuti::where('id',$id)->update_hrd($cuti);
+        return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
+    }
     /**
      * Remove the specified resource from storage.
      */
