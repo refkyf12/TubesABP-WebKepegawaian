@@ -17,9 +17,10 @@
                     class="border"
                     style="padding: 20px"
                     method="POST"
-                    action="/update/{{ $data->id }}"
+                    action="{{url('update/hrd/'.$data->id)}}"
                 >
                     @csrf
+                    {{ method_field('PUT') }}
                     <input type="hidden"/>
                     <div class="form-group">
                         <label>Nama</label>
@@ -41,39 +42,47 @@
                     </div>
                     <div class="form-group">
                         <label>Lama Cuti</label>
-                        <input
-                            type="number"
-                            name="lama_cuti"
-                            class="form-control"
-                            value="{{ $data->lama_cuti}}"
-                        />
+                        @foreach ($data->cuti as $c)
+                            <input
+                                type="number"
+                                name="lama_cuti"
+                                class="form-control"
+                                value="{{ $c->lama_cuti}}"
+                            />
+                        @endforeach
                     </div>
                     <div class="form-group">
                         <label>Tanggal Cuti</label>
+                        @foreach ($data->cuti as $c)
                         <input
                             type="date"
                             name="tanggal_cuti"
                             class="form-control"
-                            value="{{ $data->tanggal_cuti}}"
+                            value="{{ $c->tanggal_cuti}}"
                         />
+                        @endforeach
                     </div>
                     <div class="form-group">
                         <label>Lama Lembur</label>
+                        @foreach ($data->lembur as $a)
                         <input
                             type="number"
                             name="lama_lembur"
                             class="form-control"
-                            value="{{ $data->lama_lembur}}"
+                            value="{{ $a->lama_lembur}}"
                         />
+                        @endforeach
                     </div>
                     <div class="form-group">
                         <label>Tanggal Lembur</label>
+                        @foreach ($data->lembur as $a)
                         <input
                             type="date"
                             name="tanggal_lembur"
                             class="form-control"
-                            value="{{ $data->tanggal_lembur}}"
+                            value="{{ $a->tanggal_lembur}}"
                         />
+                        @endforeach
                     </div>
                     <div style="text-align: center">
                         <button class="btn btn-success">Simpan</button>

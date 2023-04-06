@@ -73,10 +73,10 @@ class UserController extends Controller
     public function show_karyawan(string $id)
     {
         $data = Users::find($id);
-        $lembur = Lembur::find($id);
-        $cuti = Cuti::find($id);
+        // $lembur = Lembur::get();
+        // $cuti = Cuti::get();
         // $data = Users::with('lembur', 'cuti', 'departement')->get();
-        return view('karyawan.form_edit_account_karyawan', compact('data', 'lembur', 'cuti'));
+        return view('karyawan.form_edit_account_karyawan', compact('data'));
     }
 
     /**
@@ -84,7 +84,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $dt = User::find($id);
+        $dt = Users::find($id);
     	$title = "Edit Karyawan $dt->name";
 
     	return view('karyawan.edit',compact('dt'));
@@ -111,9 +111,9 @@ class UserController extends Controller
 
     public function update_hrd(Request $request, string $id)
     {
-        $data = Users::find($id);
-        $lembur = Lembur::find($id);
-        $cuti = Cuti::find($id);
+        $data = Users::with('lembur', 'cuti', 'departement')->find($id);
+        // $lembur = Lembur::find($id);
+        // $cuti = Cuti::find($id);
         $this->validate($request,[
     		'email'=>'required',
     		'name'=>'required'
@@ -121,13 +121,13 @@ class UserController extends Controller
 
         $data['name'] = $request->name;
         $data['gaji_total'] = $request->gaji_total;
-        $lembur['lama_lembur'] = $request->lama_lembur;
-        $cuti['lama_cuti'] = $request->lama_cuti;
-        $lembur['tanggal_lembur'] = $request->tanggal_lembur;
-        $cuti['tanggal_cuti'] = $request->tanggal_cuti;
-    	User::where('id',$id)->update_hrd($data);
-        lembur::where('id',$id)->update_hrd($lembur);
-        cuti::where('id',$id)->update_hrd($cuti);
+        $data['lama_lembur'] = $request->lama_lembur;
+        $data['lama_cuti'] = $request->lama_cuti;
+        $data['tanggal_lembur'] = $request->tanggal_lembur;
+        $data['tanggal_cuti'] = $request->tanggal_cuti;
+    	Users::where('id',$id)->update_hrd($data);
+        Lembur::where('id',$id)->update_hrd($data);
+        Cuti::where('id',$id)->update_hrd($data);
         return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
     /**
