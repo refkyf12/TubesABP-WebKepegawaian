@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,20 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('/delete/{id}','App\Http\Controllers\UserController@delete');
     Route::get('/karyawan/{id}', [UserController::class], 'show')->name('show');
     Route::post('/update/{id}', 'App\Http\Controllers\UserController@update');
+    Route::get('/announcement', 'App\Http\Controllers\AnnouncementController@index');
+    Route::get('/announcement/create', 'App\Http\Controllers\AnnouncementController@create');
+    Route::post('/announcement/create', 'App\Http\Controllers\AnnouncementController@store');
+    Route::delete('/delete_announcement/{id}','App\Http\Controllers\AnnouncementController@delete_announcement');
 });
 
 Route::get('/keluar',function(){
     Auth::logout();
     return redirect('/login');
 });
+
+
+
+
+/*Route::get('/announcement',function() {
+    return view('announcement.index');
+});*/
