@@ -69,8 +69,10 @@ class AnnouncementController extends Controller {
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
-        //
+        $data = Announcement::find($id);
+        $data ->delete();
+        return redirect('/announcement')->with('msg', 'Data Berhasil di Hapus');
     }
 }

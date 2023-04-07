@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('id_karyawan')->references('id')->on('users');
             $table->integer('lama_cuti');
             $table->date('tanggal_cuti');
+            $table->integer('disetujui')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\LemburController;
+use App\Http\Controllers\CutiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,18 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/announcement/create', 'App\Http\Controllers\AnnouncementController@create');
     Route::post('/announcement/create', 'App\Http\Controllers\AnnouncementController@store');
     Route::delete('/delete_announcement/{id}','App\Http\Controllers\AnnouncementController@delete_announcement');
+    Route::get('/lembur','App\Http\Controllers\LemburController@index');
+    Route::resource('lembur', LemburController::class);
+    Route::get('/lembur/{id}','App\Http\Controllers\LemburController@show');
+    Route::post('/lembur/{id}', 'App\Http\Controllers\LemburController@update');
+
+    Route::get('/cuti','App\Http\Controllers\CutiController@index');
+    Route::resource('cuti', CutiController::class);
+    Route::get('/cuti/{id}','App\Http\Controllers\CutiController@show');
+    Route::post('/cuti/{id}', 'App\Http\Controllers\CutiController@update');
+
+    Route::delete('/delete_announcement/{id}','App\Http\Controllers\AnnouncementController@delete');
+
 });
 
 Route::get('/keluar',function(){
