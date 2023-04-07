@@ -10,7 +10,14 @@ class Lembur extends Model
     use HasFactory;
     protected $table = 'lembur';
 
-    public function user(){
+    protected $fillable = [
+        'users_id',
+        'lama_lembur',
+        'tanggal_lembur',
+        'disetujui',
+    ];
+
+    public function users(){
         return $this->belongsTo(Users::class);
     }
 }
