@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('lama_lembur');
             $table->date('tanggal_lembur');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users');
             $table->integer('disetujui')->nullable();
             $table->timestamps();
         });
