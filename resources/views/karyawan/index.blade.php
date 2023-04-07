@@ -62,7 +62,12 @@
                                 </td>
                                 <td>
                                     <div style="width:60px">
+                                        @if(\Auth::user()->role == 1)
                                         <a href="/karyawan/{{$dt->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
+                                        @endif
+                                        @if(\Auth::user()->role == 2)
+                                        <a href="/karyawan/hrd/{{$dt->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
+                                        @endif
                                         <button href="/delete/{{ $dt->id }} "class="btn btn-danger btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>
                                     </div>
                                 </td>

@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::delete('/delete_announcement/{id}','App\Http\Controllers\AnnouncementController@delete');
 
+    Route::get('/karyawan/hrd/{id}', 'App\Http\Controllers\UserController@show_karyawan');
+    Route::post('update/hrd/{id}', 'App\Http\Controllers\UserController@update_hrd');
 });
 
 Route::get('/keluar',function(){
