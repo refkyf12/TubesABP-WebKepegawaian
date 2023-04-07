@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cuti', function (Blueprint $table) {
+        Schema::create('Announcement', function (Blueprint $table) {
             $table->id();
-            $table->integer('lama_cuti');
-            $table->date('tanggal_cuti');
-            $table->integer('disetujui')->nullable();
+            $table->string('judul');
+            $table->date('tanggal_awal');
+            $table->date('tanggal_akhir');
+            $table->string('pesan');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cuti');
+        Schema::dropIfExists('Announcement');
     }
 };
