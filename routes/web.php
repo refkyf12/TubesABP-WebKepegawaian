@@ -32,7 +32,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/karyawan/{id}', [UserController::class], 'show')->name('show');
     Route::post('/update/{id}', 'App\Http\Controllers\UserController@update');
     Route::get('/karyawan/hrd/{id}', 'App\Http\Controllers\UserController@show_karyawan');
-    Route::put('update/hrd/{id}', 'App\Http\Controllers\UserController@update_hrd');
+    Route::post('update/hrd/{id}', 'App\Http\Controllers\UserController@update_hrd');
 });
 
 Route::get('/keluar',function(){

@@ -112,22 +112,23 @@ class UserController extends Controller
     public function update_hrd(Request $request, string $id)
     {
         $data = Users::with('lembur', 'cuti', 'departement')->find($id);
+        $data = Users::find($id);
         // $lembur = Lembur::find($id);
         // $cuti = Cuti::find($id);
-        $this->validate($request,[
-    		'email'=>'required',
-    		'name'=>'required'
-    	]);
-
+        $test = array();
+        $test2 = array();
         $data['name'] = $request->name;
         $data['gaji_total'] = $request->gaji_total;
-        $data['lama_lembur'] = $request->lama_lembur;
-        $data['lama_cuti'] = $request->lama_cuti;
-        $data['tanggal_lembur'] = $request->tanggal_lembur;
-        $data['tanggal_cuti'] = $request->tanggal_cuti;
-    	Users::where('id',$id)->update_hrd($data);
-        Lembur::where('id',$id)->update_hrd($data);
-        Cuti::where('id',$id)->update_hrd($data);
+        $test2['lama_lembur'] = $request->lama_lembur;
+        $test['lama_cuti'] = $request->lama_cuti;
+        $test2['tanggal_lembur'] = $request->tanggal_lembur;
+        $test['tanggal_cuti'] = $request->tanggal_cuti;
+    	// Users::where('id',$id)->update_hrd($data);
+        // Lembur::where('id',$id)->update_hrd($data);
+        // Cuti::where('id',$id)->update_hrd($data);
+        $data->update();
+        $data->update($test);
+        $data->update($test2);
         return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
     /**

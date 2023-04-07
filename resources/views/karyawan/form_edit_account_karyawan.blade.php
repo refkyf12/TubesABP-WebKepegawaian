@@ -20,7 +20,7 @@
                     action="{{url('update/hrd/'.$data->id)}}"
                 >
                     @csrf
-                    {{ method_field('PUT') }}
+                    <!-- {{ method_field('PUT') }} -->
                     <input type="hidden"/>
                     <div class="form-group">
                         <label>Nama</label>
