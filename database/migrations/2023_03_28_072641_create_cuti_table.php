@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('cuti', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_karyawan');
-            $table->foreign('id_karyawan')->references('id')->on('users');
             $table->integer('lama_cuti');
             $table->date('tanggal_cuti');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
