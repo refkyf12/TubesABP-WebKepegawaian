@@ -113,22 +113,19 @@ class UserController extends Controller
     {
         $data = Users::with('lembur', 'cuti', 'departement')->find($id);
         $data = Users::find($id);
-        // $lembur = Lembur::find($id);
-        // $cuti = Cuti::find($id);
-        $test = array();
-        $test2 = array();
+        
+        $lembur = Lembur::find($id);
+        $cuti = Cuti::find($id);
+        $data = array();
         $data['name'] = $request->name;
         $data['gaji_total'] = $request->gaji_total;
-        $test2['lama_lembur'] = $request->lama_lembur;
-        $test['lama_cuti'] = $request->lama_cuti;
-        $test2['tanggal_lembur'] = $request->tanggal_lembur;
-        $test['tanggal_cuti'] = $request->tanggal_cuti;
-    	// Users::where('id',$id)->update_hrd($data);
-        // Lembur::where('id',$id)->update_hrd($data);
-        // Cuti::where('id',$id)->update_hrd($data);
-        $data->update();
-        $data->update($test);
-        $data->update($test2);
+        $lembur['lama_lembur'] = $request->lama_lembur;
+        $cuti['lama_cuti'] = $request->lama_cuti;
+        $lembur['tanggal_lembur'] = $request->tanggal_lembur;
+        $cuti['tanggal_cuti'] = $request->tanggal_cuti;
+        Lembur::where('users_id',$id)->update($lembur);
+        Cuti::where('users_id',$id)->update($cuti);
+        Users::where('id',$id)->update($data);
         return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
     /**
