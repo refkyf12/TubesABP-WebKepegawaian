@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Lembur;
@@ -56,6 +57,7 @@ class UserController extends Controller
         $karyawan->email = $request->email;
         $pass_crypt = Hash::make($request->password);
         $karyawan->password = $pass_crypt;
+        $karyawan->role = $request->role;
         $karyawan->save();
         return redirect('/karyawan')->with('msg', 'Tambah akun berhasil');
 
@@ -95,18 +97,20 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        
         $data = Users::find($id);
-        $this->validate($request,[
-    		'email'=>'required',
-    		'name'=>'required'
-    	]);
-
-    	$data['email'] = $request->email;
-        $data['name'] = $request->name;
-        $hashedPassword = Auth::user()->getAuthPassword();
-        $data['password'] = $hashedPassword;
-    	User::where('id',$id)->update($data);
-        return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
+        if ($request->password != ""){
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $pass_crypt = bcrypt($request->password);
+            $data->password = $pass_crypt;
+            $data->role = $request->role;
+            $data->update();
+            return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
+        } else {
+            $id = optional(Auth::user())->id;
+            return Redirect::back()->withErrors(['msg' => 'Password harus diisi']);
+        }
     }
 
     public function update_hrd(Request $request, string $id)
