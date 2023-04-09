@@ -21,13 +21,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role');
-<<<<<<< Updated upstream
-            $table->integer('gaji_total');
-            $table->integer('jumlah_lembur');
-            $table->integer('sisa_cuti');
-=======
             $table->integer('gaji_total')->nullable();
->>>>>>> Stashed changes
             $table->rememberToken();
             $table->timestamps();
         });

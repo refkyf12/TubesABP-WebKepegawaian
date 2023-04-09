@@ -98,8 +98,6 @@ class UserController extends Controller
         }
     }
 
-<<<<<<< Updated upstream
-=======
     public function update_hrd(Request $request, string $id)
     {
         $data = Users::find($id);
@@ -111,7 +109,6 @@ class UserController extends Controller
         $data->update();
         return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
->>>>>>> Stashed changes
     /**
      * Remove the specified resource from storage.
      */
