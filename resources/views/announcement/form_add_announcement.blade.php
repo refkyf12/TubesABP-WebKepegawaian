@@ -22,7 +22,7 @@
                     @csrf
                     <input type="hidden" name="_method" value="{{ $method }}" />
                     <div class="form-group">
-                        <label>judul</label>
+                        <label>Judul</label>
                         <input
                             type="string"
                             name="judul"

@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->integer('nip')->nullable();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('telp')->nullable();
+            $table->string('departement')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role');
-            $table->integer('gaji_total');
+            $table->integer('gaji_total')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,5 +33,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
-    }
+}
 };

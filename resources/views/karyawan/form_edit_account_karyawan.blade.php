@@ -23,12 +23,30 @@
                     <!-- {{ method_field('PUT') }} -->
                     <input type="hidden"/>
                     <div class="form-group">
+                        <label>NIP</label>
+                        <input
+                            type="number"
+                            name="nip"
+                            class="form-control"
+                            value="{{ $data->nip}}"
+                        />
+                    </div>
+                    <div class="form-group">
                         <label>Nama</label>
                         <input
                             type="string"
                             name="name"
                             class="form-control"
                             value="{{ $data->name}}"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>No. Telp</label>
+                        <input
+                            type="string"
+                            name="telp"
+                            class="form-control"
+                            value="{{ $data->telp}}"
                         />
                     </div>
                     <div class="form-group">
@@ -41,48 +59,13 @@
                         />
                     </div>
                     <div class="form-group">
-                        <label>Lama Cuti</label>
-                        @foreach ($data->cuti as $c)
-                            <input
-                                type="number"
-                                name="lama_cuti"
-                                class="form-control"
-                                value="{{ $c->lama_cuti}}"
-                            />
-                        @endforeach
-                    </div>
-                    <div class="form-group">
-                        <label>Tanggal Cuti</label>
-                        @foreach ($data->cuti as $c)
+                        <label>Departement</label>
                         <input
-                            type="date"
-                            name="tanggal_cuti"
+                            type="string"
+                            name="departement"
                             class="form-control"
-                            value="{{ $c->tanggal_cuti}}"
+                            value="{{ $data->departement}}"
                         />
-                        @endforeach
-                    </div>
-                    <div class="form-group">
-                        <label>Lama Lembur</label>
-                        @foreach ($data->lembur as $a)
-                        <input
-                            type="number"
-                            name="lama_lembur"
-                            class="form-control"
-                            value="{{ $a->lama_lembur}}"
-                        />
-                        @endforeach
-                    </div>
-                    <div class="form-group">
-                        <label>Tanggal Lembur</label>
-                        @foreach ($data->lembur as $a)
-                        <input
-                            type="date"
-                            name="tanggal_lembur"
-                            class="form-control"
-                            value="{{ $a->tanggal_lembur}}"
-                        />
-                        @endforeach
                     </div>
                     <div style="text-align: center">
                         <button class="btn btn-success">Simpan</button>
@@ -107,6 +90,5 @@
             $('.preloader').fadeIn();
             location.reload();
         })
- 
-    })
+    })
 </script>
