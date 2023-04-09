@@ -98,6 +98,20 @@ class UserController extends Controller
         }
     }
 
+<<<<<<< Updated upstream
+=======
+    public function update_hrd(Request $request, string $id)
+    {
+        $data = Users::find($id);
+        $data->nip = $request->nip;
+        $data->name = $request->name;
+        $data->telp = $request->telp;
+        $data->gaji_total = $request->gaji_total;
+        $data->departement = $request->departement;
+        $data->update();
+        return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
+    }
+>>>>>>> Stashed changes
     /**
      * Remove the specified resource from storage.
      */
