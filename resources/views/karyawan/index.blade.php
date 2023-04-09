@@ -65,6 +65,9 @@
                                 {{ $dt->departement }}
                                 </td>
                                 <td>
+                                {{ $dt->departement }}
+                                </td>
+                                <td>
                                     <div style="width:60px">
                                         <a href="/karyawan/{{$dt->id}}" class="btn btn-warning btn-xs btn-edit" id="edit"><i class="fa fa-pencil-square-o"></i></a>
                                         <button href="/delete/{{ $dt->id }} "class="btn btn-danger btn-xs btn-hapus" id="delete"><i class="fa fa-trash-o"></i></button>

@@ -90,6 +90,5 @@
             $('.preloader').fadeIn();
             location.reload();
         })
- 
-    })
+    })
 </script>
