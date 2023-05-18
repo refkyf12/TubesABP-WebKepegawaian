@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lembur', function (Blueprint $table) {
+        Schema::create('Announcement', function (Blueprint $table) {
             $table->id();
-            $table->integer('lama_lembur');
-            $table->date('tanggal_lembur');
-            $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')->references('id')->on('users');
-            $table->integer('disetujui')->nullable();
+            $table->string('judul');
+            $table->date('tanggal_awal');
+            $table->date('tanggal_akhir');
+            $table->string('pesan');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lembur');
+        Schema::dropIfExists('Announcement');
     }
 };
