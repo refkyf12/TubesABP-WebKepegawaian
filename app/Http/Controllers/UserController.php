@@ -101,7 +101,7 @@ class UserController extends Controller
         $data['name'] = $request->name;
         $hashedPassword = Auth::user()->getAuthPassword();
         $data['password'] = $hashedPassword;
-    	User::where('id',$id)->update($data);
+    	Users::where('id',$id)->update($data);
         return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
 
