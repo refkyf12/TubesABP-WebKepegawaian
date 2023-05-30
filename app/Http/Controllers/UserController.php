@@ -73,7 +73,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $dt = User::find($id);
+        $dt = Users::find($id);
     	$title = "Edit Karyawan $dt->name";
 
     	return view('karyawan.edit',compact('dt'));
@@ -94,7 +94,7 @@ class UserController extends Controller
         $data['name'] = $request->name;
         $hashedPassword = Auth::user()->getAuthPassword();
         $data['password'] = $hashedPassword;
-    	User::where('id',$id)->update($data);
+    	Users::where('id',$id)->update($data);
         return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
 
