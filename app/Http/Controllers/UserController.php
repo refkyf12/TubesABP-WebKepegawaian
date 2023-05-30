@@ -92,18 +92,17 @@ class UserController extends Controller
     {
         
         $data = Users::find($id);
-        if ($request->password != ""){
-            $data->name = $request->name;
-            $data->email = $request->email;
-            $pass_crypt = bcrypt($request->password);
-            $data->password = $pass_crypt;
-            $data->role = $request->role;
-            $data->update();
-            return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
-        } else {
-            $id = optional(Auth::user())->id;
-            return Redirect::back()->withErrors(['msg' => 'Password harus diisi']);
-        }
+        $this->validate($request,[
+    		'email'=>'required',
+    		'name'=>'required'
+    	]);
+
+    	$data['email'] = $request->email;
+        $data['name'] = $request->name;
+        $hashedPassword = Auth::user()->getAuthPassword();
+        $data['password'] = $hashedPassword;
+    	User::where('id',$id)->update($data);
+        return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
     }
 
     /**
