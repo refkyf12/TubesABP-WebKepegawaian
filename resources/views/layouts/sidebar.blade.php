@@ -5,7 +5,7 @@
       <ul class="sidebar-menu" data-widget="tree">
 
         @if(\Auth::user()->role == 1)
-        <li class="menu-sidebar"><a href="{{ url('/karyawan') }}"><span class="fa fa-firefox"></span>Karyawan</span></a></li>
+        <li class="menu-sidebar"><a href="{{ url('/karyawan') }}"><span class="fa fa-users"></span>Karyawan</span></a></li>
         @endif
 
         @if(\Auth::user()->role == 2)

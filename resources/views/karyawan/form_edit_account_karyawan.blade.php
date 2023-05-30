@@ -4,7 +4,7 @@
  
 <div class="row">
     <div class="col-md-12">
-        <h4>{{ $title }}</h4>
+        <h4>Edit Karyawan</h4>
         <div class="box box-warning">
             <div class="box-header">
                 <p>
@@ -17,44 +17,54 @@
                     class="border"
                     style="padding: 20px"
                     method="POST"
-                    action="{{url('announcement/create')}}"
+                    action="{{url('update/hrd/'.$data->id)}}"
                 >
                     @csrf
-                    <input type="hidden" name="_method" value="{{ $method }}" />
+                    <!-- {{ method_field('PUT') }} -->
+                    <input type="hidden"/>
                     <div class="form-group">
-                        <label>Judul</label>
+                        <label>NIP</label>
+                        <input
+                            type="number"
+                            name="nip"
+                            class="form-control"
+                            value="{{ $data->nip}}"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Nama</label>
                         <input
                             type="string"
-                            name="judul"
+                            name="name"
                             class="form-control"
-                            value="{{ isset($data)?$data->judul:'' }}"
+                            value="{{ $data->name}}"
                         />
                     </div>
                     <div class="form-group">
-                        <label>Tanggal Awal</label>
-                        <input
-                            type="date"
-                            name="tanggal_awal"
-                            class="form-control"
-                            value="{{ isset($data)?$data->tanggal_awal:'' }}"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label>Tanggal Akhir</label>
-                        <input
-                            type="date"
-                            name="tanggal_akhir"
-                            class="form-control"
-                            value="{{ isset($data)?$data->tanggal_akhir:'' }}"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <label>Pesan</label>
+                        <label>No. Telp</label>
                         <input
                             type="string"
-                            name="pesan"
+                            name="telp"
                             class="form-control"
-                            value="{{ isset($data)?$data->pesan:'' }}"
+                            value="{{ $data->telp}}"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Gaji</label>
+                        <input
+                            type="number"
+                            name="gaji_total"
+                            class="form-control"
+                            value="{{ $data->gaji_total}}"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label>Departement</label>
+                        <input
+                            type="string"
+                            name="departement"
+                            class="form-control"
+                            value="{{ $data->departement}}"
                         />
                     </div>
                     <div style="text-align: center">
@@ -80,6 +90,5 @@
             $('.preloader').fadeIn();
             location.reload();
         })
- 
-    })
+    })
 </script>
