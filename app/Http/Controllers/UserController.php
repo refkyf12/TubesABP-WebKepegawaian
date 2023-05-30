@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use App\Models\Users;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -27,11 +27,15 @@ class UserController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $karyawan = Users::with('lembur', 'cuti', 'departement')->get();
         if(request()-> segment(1) =='api') return response()->json([
             "error"=> false,
             "list" => $karyawan,
         ]);
+=======
+        $karyawan = Users::all();
+>>>>>>> ABP_Final
         return view('karyawan.index', ['data' => $karyawan]);
     }
 
@@ -56,8 +60,9 @@ class UserController extends Controller
         $karyawan = new Users;
         $karyawan->name = $request->name;
         $karyawan->email = $request->email;
-        $pass_crypt = Hash::make($request->password);
+        $pass_crypt = bcrypt($request->password);
         $karyawan->password = $pass_crypt;
+        $karyawan->role = $request->role;
         $karyawan->save();
         return redirect('/karyawan')->with('msg', 'Tambah akun berhasil');
 
@@ -83,13 +88,35 @@ class UserController extends Controller
     	return view('karyawan.edit',compact('dt'));
     }
 
+    public function show_karyawan(string $id)
+    {
+        $data = Users::find($id);
+        // $lembur = Lembur::get();
+        // $cuti = Cuti::get();
+        // $data = Users::with('lembur', 'cuti', 'departement')->get();
+        return view('karyawan.form_edit_account_karyawan', compact('data'));
+    }
+    
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
+        
         $data = Users::find($id);
-<<<<<<<<< Temporary merge branch 1
+<<<<<<< HEAD
+        $this->validate($request,[
+    		'email'=>'required',
+    		'name'=>'required'
+    	]);
+
+    	$data['email'] = $request->email;
+        $data['name'] = $request->name;
+        $hashedPassword = Auth::user()->getAuthPassword();
+        $data['password'] = $hashedPassword;
+    	Users::where('id',$id)->update($data);
+        return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
+=======
         if ($request->password != ""){
             $data->name = $request->name;
             $data->email = $request->email;
@@ -102,21 +129,20 @@ class UserController extends Controller
             $id = optional(Auth::user())->id;
             return Redirect::back()->withErrors(['msg' => 'Password harus diisi']);
         }
-=========
-        $this->validate($request,[
-    		'email'=>'required',
-    		'name'=>'required'
-    	]);
-
-    	$data['email'] = $request->email;
-        $data['name'] = $request->name;
-        $hashedPassword = Auth::user()->getAuthPassword();
-        $data['password'] = $hashedPassword;
-    	User::where('id',$id)->update($data);
-        return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
->>>>>>>>> Temporary merge branch 2
+>>>>>>> ABP_Final
     }
 
+    public function update_hrd(Request $request, string $id)
+    {
+        $data = Users::find($id);
+        $data->nip = $request->nip;
+        $data->name = $request->name;
+        $data->telp = $request->telp;
+        $data->gaji_total = $request->gaji_total;
+        $data->departement = $request->departement;
+        $data->update();
+        return redirect('/karyawan')->with('msg', 'Akun berhasil diperbarui');
+    }
     /**
      * Remove the specified resource from storage.
      */
