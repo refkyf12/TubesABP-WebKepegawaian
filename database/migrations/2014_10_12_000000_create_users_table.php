@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('role');
             $table->integer('gaji_total');
+            $table->string("no_telepon");
             $table->rememberToken();
             $table->timestamps();
         });
