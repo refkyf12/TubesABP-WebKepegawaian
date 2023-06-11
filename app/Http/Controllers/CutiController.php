@@ -32,7 +32,16 @@ class CutiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cutiData = new Cuti;
+        $cutiData->users_id = $request->users_id;
+        $cutiData->lama_cuti = $request->lama_cuti;
+        $cutiData->tanggal_cuti = $request->tanggal_cuti;
+        $cutiData->save();
+        if (request()->segment(1)=='api') return response()->json([
+            "error" => false,
+            "message" => 'Tambah berhasil',
+        ]);
+        return redirect('/cuti')-with('msg', 'Tambah berhasil');
     }
 
     /**

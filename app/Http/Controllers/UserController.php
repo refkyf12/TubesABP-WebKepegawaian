@@ -63,7 +63,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $karyawan = Users::all();
+        $karyawan = Users::with('lembur', 'cuti', 'departement')->get();
         if(request()-> segment(1) =='api') return response()->json([
             "error"=> false,
             "list" => $karyawan,
