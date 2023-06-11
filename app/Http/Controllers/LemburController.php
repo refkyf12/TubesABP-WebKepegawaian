@@ -16,6 +16,11 @@ class LemburController extends Controller
         // $lembur = Lembur::with('users')->get();
 
         $lembur = Lembur::orderBy('lama_lembur')->get();
+        if (request()->segment(1) == 'api') return response()->json([
+            "error"=>false,
+            "list"=>$lembur,
+        ]);
+        
         // $usr = Lembur::with('users')->get();
         
         return view('lembur.index', ['data' => $lembur]);

@@ -13,6 +13,10 @@ class AnnouncementController extends Controller {
     public function index()
     {
         $pengumuman = Announcement::all();
+        if (request()->segment(1) == 'api') return response()->json([
+            "error"=>false,
+            "list"=>$pengumuman,
+        ]);
         return view('announcement.index', ['data' => $pengumuman]);
     }
 
