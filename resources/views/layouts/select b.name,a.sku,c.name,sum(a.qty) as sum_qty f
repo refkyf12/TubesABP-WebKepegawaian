@@ -1,0 +1,26 @@
+select b.name,a.sku,c.name,sum(a.qty) as sum_qty from pos_dsalessumline a 
+inner join ad_org b on a.ad_org_id=b.ad_org_id
+inner join pos_mproduct c on a.m_product_id=c.m_product_id
+where date(a.insertdate) = '2019-11-02' 
+and a.sku='82200050'
+or a.sku = '8270800000092' and date(a.insertdate) = '2019-11-02'
+or a.sku = '815004152' and date(a.insertdate) = '2019-11-02'
+or a.sku = '815004169' and date(a.insertdate) = '2019-11-02'
+or a.sku = '815004239' and date(a.insertdate) = '2019-11-02'
+or a.sku = '8150200000031' and date(a.insertdate) = '2019-11-02'
+or a.sku = '8080016894' and date(a.insertdate) = '2019-11-02'
+or a.sku = '80206000000115' and date(a.insertdate) = '2019-11-02'
+or a.sku = '8360016162' and date(a.insertdate) = '2019-11-02'
+or a.sku = '8360600000024' and date(a.insertdate) = '2019-11-02'
+or a.sku = '8360600000025' and date(a.insertdate) = '2019-11-02'
+or a.sku = '8360600000026' and date(a.insertdate) = '2019-11-02'
+or a.sku = '8360600000027' and date(a.insertdate) = '2019-11-02'
+or a.sku = '8360600000028' and date(a.insertdate) = '2019-11-02'
+or a.sku = '8360600000033' and date(a.insertdate) = '2019-11-02'
+group by b.name,a.sku,c.name
+order by c.name
+--select m_product_id from pos_mproduct where sku='8270800000092'
+
+--select * from pos_dsalessumline 
+--where postdate between '2019-11-02 00:00:00' and '2019-11-02 23:59:00'
+--and m_product_id='55AA36BD1B38415CB59AE12E5E33844B'
