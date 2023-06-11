@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Jun 2023 pada 10.30
--- Versi server: 10.4.25-MariaDB
--- Versi PHP: 8.1.10
+-- Generation Time: Jun 11, 2023 at 11:53 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `absen`
+-- Table structure for table `absen`
 --
 
 CREATE TABLE `absen` (
@@ -36,7 +36,7 @@ CREATE TABLE `absen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `absen`
+-- Dumping data for table `absen`
 --
 
 INSERT INTO `absen` (`id`, `waktu_absen`, `users_id`, `updated_at`, `created_at`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `absen` (`id`, `waktu_absen`, `users_id`, `updated_at`, `created_at`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `announcement`
+-- Table structure for table `announcement`
 --
 
 CREATE TABLE `announcement` (
@@ -59,26 +59,40 @@ CREATE TABLE `announcement` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `announcement`
+--
+
+INSERT INTO `announcement` (`id`, `judul`, `tanggal_awal`, `tanggal_akhir`, `pesan`, `created_at`, `updated_at`) VALUES
+(1, 'REFKY KONTOL', '2023-06-11', '2023-06-14', 'REFKY GEH', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cuti`
+-- Table structure for table `cuti`
 --
 
 CREATE TABLE `cuti` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `lama_cuti` int(11) NOT NULL,
-  `tanggal_cuti` date NOT NULL,
+  `tanggal_cuti` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `users_id` bigint(20) UNSIGNED NOT NULL,
   `disetujui` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cuti`
+--
+
+INSERT INTO `cuti` (`id`, `lama_cuti`, `tanggal_cuti`, `users_id`, `disetujui`, `created_at`, `updated_at`) VALUES
+(1, 2, '2022 Mei', 1, NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `departement`
+-- Table structure for table `departement`
 --
 
 CREATE TABLE `departement` (
@@ -92,7 +106,7 @@ CREATE TABLE `departement` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -108,7 +122,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `lembur`
+-- Table structure for table `lembur`
 --
 
 CREATE TABLE `lembur` (
@@ -124,7 +138,7 @@ CREATE TABLE `lembur` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -134,7 +148,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -151,7 +165,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_reset_tokens`
+-- Table structure for table `password_reset_tokens`
 --
 
 CREATE TABLE `password_reset_tokens` (
@@ -163,7 +177,7 @@ CREATE TABLE `password_reset_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -182,7 +196,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -200,7 +214,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `gaji_total`, `telp`, `remember_token`, `created_at`, `updated_at`) VALUES
@@ -219,60 +233,60 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ro
 --
 
 --
--- Indeks untuk tabel `absen`
+-- Indexes for table `absen`
 --
 ALTER TABLE `absen`
   ADD PRIMARY KEY (`id`),
   ADD KEY `absen_users_id_foreign` (`users_id`);
 
 --
--- Indeks untuk tabel `announcement`
+-- Indexes for table `announcement`
 --
 ALTER TABLE `announcement`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `cuti`
+-- Indexes for table `cuti`
 --
 ALTER TABLE `cuti`
   ADD PRIMARY KEY (`id`),
   ADD KEY `cuti_users_id_foreign` (`users_id`);
 
 --
--- Indeks untuk tabel `departement`
+-- Indexes for table `departement`
 --
 ALTER TABLE `departement`
   ADD PRIMARY KEY (`id`),
   ADD KEY `departement_users_id_foreign` (`users_id`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `lembur`
+-- Indexes for table `lembur`
 --
 ALTER TABLE `lembur`
   ADD PRIMARY KEY (`id`),
   ADD KEY `lembur_users_id_foreign` (`users_id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_reset_tokens`
+-- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indeks untuk tabel `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -280,94 +294,94 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `absen`
+-- AUTO_INCREMENT for table `absen`
 --
 ALTER TABLE `absen`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `announcement`
+-- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `cuti`
+-- AUTO_INCREMENT for table `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `departement`
+-- AUTO_INCREMENT for table `departement`
 --
 ALTER TABLE `departement`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `lembur`
+-- AUTO_INCREMENT for table `lembur`
 --
 ALTER TABLE `lembur`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `absen`
+-- Constraints for table `absen`
 --
 ALTER TABLE `absen`
   ADD CONSTRAINT `absen_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `cuti`
+-- Constraints for table `cuti`
 --
 ALTER TABLE `cuti`
   ADD CONSTRAINT `cuti_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `departement`
+-- Constraints for table `departement`
 --
 ALTER TABLE `departement`
   ADD CONSTRAINT `departement_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `lembur`
+-- Constraints for table `lembur`
 --
 ALTER TABLE `lembur`
   ADD CONSTRAINT `lembur_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
