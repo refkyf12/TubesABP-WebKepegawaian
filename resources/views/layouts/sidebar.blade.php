@@ -13,6 +13,7 @@
         <li class="menu-sidebar"><a href="{{ url('/announcement') }}"><span class="fa fa-bullhorn"></span>Announcement</span></a></li>
         <li class="menu-sidebar"><a href="{{ url('/cuti') }}"><span class="fa fa-calendar"></span>Cuti</span></a></li>
         <li class="menu-sidebar"><a href="{{ url('/lembur') }}"><span class="fa fa-paperclip"></span>Lembur</span></a></li>
+        <li class="menu-sidebar"><a href="{{ url('/absen') }}"><span class="fa fa-google-wallet"></span>Absen</span></a></li>
         @endif
 
         <li class="menu-sidebar"><a href="{{ url('/keluar') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</span></a></li>

@@ -52,6 +52,9 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/karyawan/hrd/{id}', 'App\Http\Controllers\UserController@show_karyawan');
     Route::post('update/hrd/{id}', 'App\Http\Controllers\UserController@update_hrd');
+    Route::get('/absen','App\Http\Controllers\AbsenController@show');
+    Route::post('/absen/create', 'App\Http\Controllers\AbsenController@store');
+    Route::get('/absen/create', 'App\Http\Controllers\AbsenController@create');
 });
 
 Route::get('/keluar',function(){
