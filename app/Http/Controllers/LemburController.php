@@ -16,6 +16,10 @@ class LemburController extends Controller
         // $lembur = Lembur::with('users')->get();
 
         $lembur = Lembur::orderBy('lama_lembur')->get();
+        if (request()->segment(1) == 'api') return response()->json([
+            "error"=>false,
+            "list"=>$lembur,
+        ]);
         // $usr = Lembur::with('users')->get();
         
         return view('lembur.index', ['data' => $lembur]);
@@ -34,7 +38,16 @@ class LemburController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lemburData = new Lembur;
+        $lemburData->users_id = $request->users_id;
+        $lemburData->lama_lembur = $request->lama_lembur;
+        $lemburData->tanggal_lembur = $request->tanggal_lembur;
+        $lemburData->save();
+        if (request()->segment(1)=='api') return response()->json([
+            "error" => false,
+            "message" => 'Tambah berhasil',
+        ]);
+        return redirect('/lembur')-with('msg', 'Tambah berhasil');
     }
 
     /**

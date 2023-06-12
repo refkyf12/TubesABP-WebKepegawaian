@@ -5,7 +5,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CutiController;
+use App\Http\Controllers\LemburController;
 use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\AbsenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', 'App\Http\Controllers\UserController@login');
 Route::resource('cuti', CutiController::class);
+Route::resource('lembur', LemburController::class);
 Route::resource('karyawan', UserController::class);
 Route::resource('announcement', AnnouncementController::class);
+Route::resource('absen', AbsenController::class);

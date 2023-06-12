@@ -29,6 +29,10 @@ class AbsenController extends Controller
         $absen1->users_id = $request->users_id;
         $absen1->waktu_absen = $request->waktu_absen;
         $absen1->save();
+        if (request()->segment(1)=='api') return response()->json([
+            "error" => false,
+            "message" => 'Tambah berhasil',
+        ]);
         return redirect('/absen')->with('msg', 'Tambah absen berhasil');
 
     }

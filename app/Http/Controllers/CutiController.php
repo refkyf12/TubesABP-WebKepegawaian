@@ -15,7 +15,10 @@ class CutiController extends Controller
     {
         $cuti = Cuti::orderBy('lama_cuti')->get();
         // $usr = Lembur::with('users')->get();
-        
+        if (request()->segment(1) == 'api') return response()->json([
+            "error"=>false,
+            "list"=>$cuti,
+        ]);
         return view('cuti.index', ['data' => $cuti]);
     }
 
